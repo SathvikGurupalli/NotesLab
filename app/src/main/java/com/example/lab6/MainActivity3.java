@@ -26,13 +26,15 @@ public class MainActivity3 extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.notes);
         Intent intent = getIntent();
-        noteid = intent.getIntExtra("noteID", -1);
+        noteid = intent.getIntExtra("noteid", -1);
+
 
         if(noteid!=-1){
             Note note = MainActivity2.notes.get(noteid);
             String noteContent = note.getContent();
             editText.setText(noteContent);
         }
+
 
     }
 
@@ -55,8 +57,9 @@ public class MainActivity3 extends AppCompatActivity {
         String date = dateFormat.format(new Date());
 
         if(noteid == -1){
-            title = "NOTE_"+(noteid+1);
+            title = "NOTE_"+(MainActivity2.notes.size()+1);
             dbHelper.saveNotes(username, title, content, date);
+
         }
         else
         {
